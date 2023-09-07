@@ -13,229 +13,8 @@ info:
     url: 'https://unlicense.org/'
     name: The Unlicense
 servers:
-  - url: 'https://tone.sleepycat.date/v3'
+  - url: 'https://toneapi.ovh/v3'
 paths:
-  /client/hosts:
-    get:
-      tags:
-        - client
-      summary: Your GET endpoint
-      description: An object with host ID as keys and host name as values
-      operationId: get-client-hosts
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  '[number] host_id':
-                    $ref: '#/components/schemas/%5Bnumber%5D%20host_id'
-                    example: Fvnkhead
-              examples:
-                Example 1:
-                  value:
-                    '1': Fvnkhead
-                    '2': Legonzaur
-      servers:
-        - url: 'https://tone.sleepycat.date/v3'
-  /client/servers:
-    get:
-      tags:
-        - client
-      summary: List of servers
-      description: A JSON object with server names as keys and server data as values
-      operationId: get-server-list
-      parameters:
-        - $ref: '#/components/parameters/server'
-        - $ref: '#/components/parameters/player'
-        - $ref: '#/components/parameters/weapon'
-        - $ref: '#/components/parameters/map'
-        - $ref: '#/components/parameters/gamemode'
-        - $ref: '#/components/parameters/host'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  '[string] server_name':
-                    $ref: '#/components/schemas/%5Bstring%5D%20server_name'
-              examples:
-                Example 1:
-                  value:
-                    fvnkhead's 3v3:
-                      deaths: 79810
-                      kills: 76218
-                      max_distance: 3733
-                      total_distance: 42200935
-                      host: 1
-                    fvnkhead's 7v7:
-                      deaths: 148609
-                      kills: 163272
-                      max_distance: 6578
-                      total_distance: 113915706
-                      host: 1
-      servers:
-        - url: 'https://tone.sleepycat.date/v3'
-  /client/weapons:
-    get:
-      tags:
-        - client
-      summary: Statistics for all weapons
-      description: A JSON Object with weapon IDs as keys and weapon data as values
-      operationId: get-client-weapons
-      parameters:
-        - $ref: '#/components/parameters/server'
-        - $ref: '#/components/parameters/player'
-        - $ref: '#/components/parameters/weapon'
-        - $ref: '#/components/parameters/map'
-        - $ref: '#/components/parameters/gamemode'
-        - $ref: '#/components/parameters/host'
-      requestBody:
-        description: A JSON Object with weapon IDS as keys and weapon data as value
-        content: {}
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  '[string] weapon_id':
-                    $ref: '#/components/schemas/%5Bstring%5D%20weapon_id'
-              examples:
-                Example 1:
-                  value:
-                    autopistol:
-                      deaths: 27
-                      kills: 28
-                      max_distance: 2173
-                      total_distance: 12792
-                    car:
-                      deaths: 1394
-                      kills: 1534
-                      max_distance: 3217
-                      total_distance: 905505
-      servers:
-        - url: 'https://tone.sleepycat.date/v3'
-  /client/players:
-    get:
-      tags:
-        - client
-      summary: Statistics for all players
-      description: A JSON Object with player IDs as keys and player data as values
-      operationId: get-client-players
-      parameters:
-        - $ref: '#/components/parameters/weapon'
-        - $ref: '#/components/parameters/server'
-        - $ref: '#/components/parameters/player'
-        - $ref: '#/components/parameters/gamemode'
-        - $ref: '#/components/parameters/map'
-        - $ref: '#/components/parameters/host'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  '[number] player_id':
-                    $ref: '#/components/schemas/%5Bnumber%5D%20player_id'
-              examples:
-                Example 1:
-                  value:
-                    '2250125460':
-                      username: Legonzaur
-                      deaths: 0
-                      kills: 0
-                      max_kill_distance: 0
-                      avg_kill_distance: 0
-      servers:
-        - url: 'https://tone.sleepycat.date/v3'
-  /client/maps:
-    get:
-      tags:
-        - client
-      summary: Your GET endpoint
-      description: A JSON Object with map IDs as keys and map data as values
-      operationId: get-client-maps
-      parameters:
-        - $ref: '#/components/parameters/host'
-        - $ref: '#/components/parameters/gamemode'
-        - $ref: '#/components/parameters/map'
-        - $ref: '#/components/parameters/weapon'
-        - $ref: '#/components/parameters/player'
-        - $ref: '#/components/parameters/server'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  KillData:
-                    $ref: '#/components/schemas/KillData'
-              examples:
-                Example 1:
-                  value:
-                    lf_meadow:
-                      deaths: 13628
-                      kills: 11791
-                      max_distance: 3970
-                      total_distance: 7139763
-                    lf_township:
-                      deaths: 14861
-                      kills: 14232
-                      max_distance: 3642
-                      total_distance: 9022513
-      servers:
-        - url: 'https://tone.sleepycat.date/v3'
-  /client/gamemodes:
-    get:
-      tags:
-        - client
-      summary: Your GET endpoint
-      description: A JSON Object with gamemodes IDs as keys and gamemodes data as values
-      operationId: get-client-gamemodes
-      parameters:
-        - $ref: '#/components/parameters/host'
-        - $ref: '#/components/parameters/gamemode'
-        - $ref: '#/components/parameters/map'
-        - $ref: '#/components/parameters/weapon'
-        - $ref: '#/components/parameters/player'
-        - $ref: '#/components/parameters/server'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  KillData:
-                    $ref: '#/components/schemas/KillData'
-              examples:
-                Example 1:
-                  value:
-                    ps:
-                      deaths: 273232
-                      kills: 286679
-                      max_distance: 8521
-                      total_distance: 184069789
-                    aitdm:
-                      deaths: 11388
-                      kills: 12814
-                      max_distance: 5689
-                      total_distance: 9184028
-      servers:
-        - url: 'https://tone.sleepycat.date/v3'
   /servers:
     post:
       tags:
@@ -256,12 +35,32 @@ paths:
     post:
       tags:
         - server
-      summary: Match
+      summary: Create a match
       description: Allows a Northstar server to create a match on the database
-      operationId: server-match
+      operationId: server-match-create
       requestBody:
         description: ''
-        content: {}
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                server_name:
+                  type: string
+                  x-stoplight:
+                    id: wjy89zlbesgsg
+                game_map:
+                  type: string
+                  x-stoplight:
+                    id: pg5fzotd8lyxw
+                gamemode:
+                  type: string
+                  x-stoplight:
+                    id: xh2lhokfc24eb
+                air_accel:
+                  type: boolean
+                  x-stoplight:
+                    id: jcpfrheglszl0
       responses:
         '201':
           description: Created
@@ -282,6 +81,105 @@ paths:
         - Auth_Token: []
       servers:
         - url: 'https://tone.sleepycat.date/v3'
+  '/servers/match/{match_id}/close':
+    post:
+      tags:
+        - server
+      summary: Close a match
+      description: Close the match and save statistics
+      operationId: server-match-close
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                '[string] player_id':
+                  type: object
+                  x-stoplight:
+                    id: 3q3o0pwulezj2
+                  properties:
+                    weapons:
+                      type: object
+                      x-stoplight:
+                        id: 0gsa5enmd4uzm
+                      properties:
+                        '[string] weaponID':
+                          $ref: '#/components/schemas/MatchCloseWeaponData'
+                    titans:
+                      type: object
+                      x-stoplight:
+                        id: o36gf0e9j9gsh
+                      properties:
+                        '[string] titanID':
+                          $ref: '#/components/schemas/MatchCloseWeaponData'
+                    stats:
+                      type: object
+                      x-stoplight:
+                        id: h5i5dfb3zdlk1
+                      properties:
+                        distance:
+                          $ref: '#/components/schemas/matchClosePlayerStats'
+                        time:
+                          $ref: '#/components/schemas/matchClosePlayerStats'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  match:
+                    type: integer
+        '400':
+          $ref: '#/components/responses/Bad-Request'
+        '401':
+          $ref: '#/components/responses/Invalid-Auth'
+        '500':
+          $ref: '#/components/responses/Internal-Server-Error'
+      security:
+        - Auth_Token: []
+      servers:
+        - url: 'https://tone.sleepycat.date/v3'
+      x-stoplight:
+        id: 4jc5qvqwxlsue
+    parameters:
+      - schema:
+          type: integer
+        name: match_id
+        in: path
+        required: true
+  '/servers/player/{player_id}/connect':
+    parameters:
+      - schema:
+          type: string
+        name: player_id
+        in: path
+        required: true
+    put:
+      summary: Player username update
+      operationId: server-player-connect
+      responses:
+        '201':
+          description: Created
+      x-stoplight:
+        id: 50hgv66l3d4z6
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  x-stoplight:
+                    id: 0fm9gzrvmia6j
+                match_id:
+                  type: number
+                  x-stoplight:
+                    id: 062q6ygb5k5il
   /servers/kill:
     post:
       tags:
@@ -482,6 +380,7 @@ components:
           type: integer
         username:
           type: string
+      title: ''
     KillData:
       type: object
       title: Killdata
@@ -526,8 +425,6 @@ components:
       properties:
         velocity:
           type: number
-        name:
-          type: string
         loadout:
           type: object
           properties:
@@ -563,3 +460,51 @@ components:
           type: integer
         id:
           type: string
+    matchClosePlayerStats:
+      title: MatchClosePlayerMoveStats
+      x-stoplight:
+        id: 27jz52i808ffl
+      type: object
+      properties:
+        ground:
+          type: number
+          x-stoplight:
+            id: p101zel4w57ir
+        air:
+          type: number
+          x-stoplight:
+            id: 2xlck0xditzhl
+        wall:
+          type: number
+          x-stoplight:
+            id: awqcjkwqze40a
+    MatchCloseWeaponData:
+      title: MatchCloseWeaponData
+      x-stoplight:
+        id: gjyyzzkrcr59f
+      type: object
+      properties:
+        shotsFired:
+          type: integer
+          x-stoplight:
+            id: c9wlafwbpe6u0
+        shotsHit:
+          type: integer
+          x-stoplight:
+            id: 9kfnkdw5amlnr
+        shotsCrit:
+          type: integer
+          x-stoplight:
+            id: bn76zlry7bbe2
+        shotsHeadshot:
+          type: integer
+          x-stoplight:
+            id: aglqqfxyhpawi
+        shotsRichochet:
+          type: integer
+          x-stoplight:
+            id: 8mwo5nidybzyc
+        playtime:
+          type: number
+          x-stoplight:
+            id: z0tzic1srfe29
